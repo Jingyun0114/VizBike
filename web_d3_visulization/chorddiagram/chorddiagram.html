@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>VizBike@Pittsburgh</title>
+
+    <!-- Bootstrap -->
+<!--     <link href="css/bootstrap.css" rel="stylesheet"> -->
+    <link href="css/chordDiagramstyle.css" rel="stylesheet">
+<style>
+      .navbar-default .navbar-nav>.active>a{
+        background-color:white;
+        color: #00abe0;
+        font-weight: bolder !important;
+      }
+      .navbar-default .navbar-nav>li>a{
+        color: white;
+        font-weight: bolder !important;
+        text-decoration: none;
+      }
+      .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus{
+        background-color:white !important;
+        display: block;
+      }
+      .navbar-default .navbar-nav>li>a:hover {
+        background-color:white !important;
+        display: block;
+        color: #00abe0;
+        font-weight: bolder !important;
+      }
+      .first{
+        background-color:white;
+      }
+      .title>a{
+        font-size:10pt;
+        font-weight:bolder;
+        line-height:2;
+        color: black !important;
+      }
+    </style>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+  </head>
+  <body>
+    <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12" style="background-color:#00abe0;border-bottom:solid 1px white;">
+        <center>
+       <img src="../image/vizbike-transparent.png" class="img-responsive" style="width:25%;padding-bottom:0px;margin-bottom:0px;">
+     </center>
+
+      </div>
+    </div>
+  </div>
+
+
+
+<nav class="navbar navbar-default" role="navigation" style="background-color:#00abe0; border:none; border-radius:0;margin:0px;">
+    <div class="container-fluid" style="padding-left:0px;">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#" style="padding:0px;"></a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="padding-left:0px;">
+        <ul class="nav navbar-nav">
+          <li><a href="../home.html">Home</a></li>
+          <li><img src="../image/explore.png" style="width:100px;padding-top:5px;margin-left:10px;margin-right:10px"/></li>
+          <li><img src="../image/newbike.png" style="width:50px"/></li>
+          <li><span style="font-size:14pt;font-weight:bolder;line-height:2;margin-right:10px;color:black;">By Rider Behavior</span></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Trip Counts and Duration<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="../tripDuration/ave_num_of_trips.html">Average Trip Counts</a></li>
+              <li><a href="../tripDuration/trip_duration.html">Trip Duration</a></li>
+            </ul>
+          </li>
+          <li class=""><a href="../heatmap/heatmap.html">Busy Hours</a></li>
+          <li><a href="../dashboard/weather.html">Weather Impact</a></li>
+          <li><img src="../image/index-marker.png" style="width:45px;height:45px;padding-top:5px;"/></li>
+          <li><span style="font-size:14pt;font-weight:bolder;line-height:2;margin-right:10px;color:black;">By Station</span></li>
+          <li class=""><a href="../map/map.html">Bike Balance</a></li>
+          <li class="dropdown active">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Hot Stations<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="../chorddiagram/chorddiagram.html">Station Path</a></li>
+              <li><a href="../bumpchart/bumpchart.html">Station Ranking</a></li>
+            </ul>
+          </li>
+
+
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+    <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-offset-3 col-md-6">
+        <h1 class="center-content" style="text-align:center;font-family:helvetica !important;"><b>Station Origination and Termination</b></h1>
+        <center><h3 style="font-size:10pt;color:gray;"><span style="font-weight: bold; color:skyblue;">Mouseover</span> to focus on travel to and from a particular station.</h3></center>
+          <br/>
+          <br/>
+            <input id="slider" type="range" min="0" max="3" value="0" step="1" data-range-stepfactor="1" onchange="year(this.value)" style="margin-left:4%;" />
+            <div class="ticks" style="font-size:18px;">
+                <span id="a" aria-hidden="true" style="color:#0067a5; padding-right:6%;">2015 Quarter 3</span>
+                <span id="b" aria-hidden="true" style="color:#abcbdf;  padding-right:6%;">2015 Quarter 4</span>
+                <span id="c" aria-hidden="true" style="color:#abcbdf;  padding-right:6%;">2016 Quarter 1</span>
+                <span id="d" aria-hidden="true" style="color:#abcbdf;  ">2016 Quarter 2</span>
+            </div>
+            <br/>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="http://d3js.org/d3.v2.min.js?2.8.1"></script>
+  <script>
+      var width = 900,
+          height = 900,
+          svgWidth = 1300,
+          svgHeight = 1100,
+          outerRadius = Math.min(width, height) / 2 - 100,
+          innerRadius = outerRadius - 25;
+      var formatPercent = d3.format(".4r");
+      var arc = d3.svg.arc().innerRadius(innerRadius).outerRadius(outerRadius);
+      var arc = d3.svg.arc().innerRadius(innerRadius).outerRadius(outerRadius);
+      var arctest = d3.svg.arc().startAngle(0).endAngle(90).innerRadius(innerRadius + 20).outerRadius(outerRadius + 100);
+      var layout = d3.layout.chord().padding(.04).sortSubgroups(d3.descending).sortChords(d3.ascending);
+      var path = d3.svg.chord().radius(innerRadius);
+      var svg = d3.select("body").append("svg").attr("width", svgWidth).attr("height", svgHeight).append("g").attr("id", "circle").attr("transform", "translate(" + (width/2 + 250)   + "," + (height / 2 + 70) + ")");
+      var delayBetweenAnimation = 10;
+      var Delay = function (d, i) {
+          return i * delayBetweenAnimation;
+      };
+      var transitionChordDiagram = function (selection) {
+          selection.transition().duration(400).delay(Delay).attr("d", path);
+      };
+      svg.append("circle").attr("r", outerRadius);
+      //draw data from Q3 by default ------
+      var quarter = "2015Q3";
+      d3.csv("stationsColorQ3_Ranking.csv", function (stations) {
+          d3.json("2015Q3matrix_Ranking.json", function (matrix) {
+              // Compute the chord layout.
+              layout.matrix(matrix);
+              // Add a group per neighborhood.
+              var group = svg.selectAll(".group").data(layout.groups).enter().append("g").attr("class", "group").on("mouseover", mouseover).on("mouseout", mouseout);
+              //Add a mouseover title.
+              group.append("title").text(function (d, i) {
+                  return "Group Info: \n" + stations[i].name + ": " + formatPercent(d.value) + " Trips Out";
+              });
+              // Add the group arc.
+              var groupPath = group.append("path").attr("id", function (d, i) {
+                  return "group" + i;
+              }).attr("d", arc).style("fill", function (d, i) {
+                  return stations[i].color;
+              });
+              //Add station label
+              var groupText = group.append("text").each(function (d) {
+                  d.angle = (d.startAngle + d.endAngle) / 2;
+              }).attr("dy", ".35em").style("font-family", "sans-serif").style("font-size", "12px").style("stroke", "#000000").style("stroke-width", ("0.5px")).attr("text-anchor", function (d) {
+                  return d.angle > Math.PI ? "end" : null;
+              }).attr("transform", function (d) {
+                  return "rotate(" + (d.angle * 180 / Math.PI - 90) + ")" + "translate(" + (innerRadius + 26) + ")" + (d.angle > Math.PI ? "rotate(180)" : "");
+              }).text(function (d, i) {
+                  return stations[i].name;
+              });
+              // Add the chords.
+              var chord = svg.selectAll(".chord").data(layout.chords).enter().append("path").attr("class", "chord").style("fill", function (d) {
+                  return stations[d.source.index].color;
+              }).attr("d", path);
+              //Add an elaborate mouseover title for each chord.
+              chord.append("title").text(function (d) {
+                  return "Chord Info: \n" + stations[d.source.index].name + " → " + stations[d.target.index].name + ": " + formatPercent(d.source.value) + (stations[d.source.index].name === stations[d.target.index].name ? "" : ("\n While... \n" + stations[d.target.index].name + " → " + stations[d.source.index].name + ": " + formatPercent(d.target.value)));
+              });
+
+              function mouseover(d, i) {
+                  chord.classed("fade", function (p) {
+                      return p.source.index != i && p.target.index != i;
+                  });
+              }
+              function mouseout(d, i){
+                chord.selectAll(".chord").classed("fade", false);
+              }
+          });
+      });
+      //get slider value
+      function year(value) {
+          switch (value) {
+          case "0":
+              $("#a").css("color", "#0067a5");
+              $("#b").css("color", "#abcbdf");
+              $("#c").css("color", "#abcbdf");
+              $("#d").css("color", "#abcbdf");
+              quarter = "2015Q3";
+              console.log(quarter);
+              break;
+          case "1":
+              $("#a").css("color", "#abcbdf");
+              $("#b").css("color", "#0067a5");
+              $("#c").css("color", "#abcbdf");
+              $("#d").css("color", "#abcbdf");
+              $("#e").css("color", "#abcbdf");
+              quarter = "2015Q4";
+              console.log(quarter);
+              break;
+          case "2":
+              $("#a").css("color", "#abcbdf");
+              $("#b").css("color", "#abcbdf");
+              $("#c").css("color", "#0067a5");
+              $("#d").css("color", "#abcbdf");
+              $("#e").css("color", "#abcbdf");
+              quarter = "2016Q1";
+              console.log(quarter);
+              break;
+          case "3":
+              $("#a").css("color", "#abcbdf");
+              $("#b").css("color", "#abcbdf");
+              $("#c").css("color", "#abcbdf");
+              $("#d").css("color", "#0067a5");
+              quarter = "2016Q2";
+              console.log(quarter);
+              break;
+          default:
+              $("#a").css("color", "#0067a5");
+              $("#b").css("color", "#abcbdf");
+              $("#c").css("color", "#abcbdf");
+              $("#d").css("color", "#abcbdf");
+              quarter = "2015Q3";
+          }
+          //console.log(data);
+          updateData();
+      }
+      //data files
+      function updateData() {
+          if (quarter == "2015Q3") {
+              d3.csv("stationsColorQ3_Ranking.csv", function (stations) {
+                  d3.json("2015Q3matrix_Ranking.json", function (matrix) {
+                      updateChart(stations, matrix);
+                  });
+              });
+          }
+          if (quarter == "2015Q4") {
+              d3.csv("stationsColorQ4_Ranking.csv", function (stations) {
+                  d3.json("2015Q4matrix_Ranking.json", function (matrix) {
+                      updateChart(stations, matrix);
+                  });
+              });
+          }
+          if (quarter == "2016Q1") {
+              d3.csv("stationsColorQ1_Ranking.csv", function (stations) {
+                  d3.json("2016Q1matrix_Ranking.json", function (matrix) {
+                      updateChart(stations, matrix);
+                  });
+              });
+          }
+          if (quarter == "2016Q2") {
+              d3.csv("stationsColorQ2_Ranking.csv", function (stations) {
+                  d3.json("2016Q2matrix_Ranking.json", function (matrix) {
+                      updateChart(stations, matrix);
+                  });
+              });
+          }
+      }
+
+      function updateChart(stations, matrix) {
+          // Compute the chord layout.
+          layout.matrix(matrix);
+          console.log(stations, matrix);
+          // });
+          svg.selectAll("*").remove();
+          //Add a group per neighborhood.
+          var group = svg.selectAll(".group").data(layout.groups).enter().append("g").attr("class", "group").on("mouseover", mouseover).on("mouseout", mouseout);
+          //Add a mouseover title.
+          group.append("title").text(function (d, i) {
+              return stations[i].name + ": " + formatPercent(d.value) + " of origins";
+          });
+          var group = svg.selectAll(".group");
+          //Add the group arc.
+          var groupPath = group.append("path").attr("id", function (d, i) {
+              return "group" + i;
+          }).attr("d", arc).attr("transform", "").style("fill", function (d, i) {
+              return stations[i].color;
+          });
+          var groupText = group.append("text").each(function (d) {
+              d.angle = (d.startAngle + d.endAngle) / 2;
+          }).attr("dy", ".35em").style("font-family", "sans-serif").style("font-size", "12px").style("stroke", "#000000").style("stroke-width", ("0.5px")).attr("text-anchor", function (d) {
+              return d.angle > Math.PI ? "end" : null;
+          }).attr("transform", function (d) {
+              return "rotate(" + (d.angle * 180 / Math.PI - 90) + ")" + "translate(" + (innerRadius + 26) + ")" + (d.angle > Math.PI ? "rotate(180)" : "");
+          }).text(function (d, i) {
+              return stations[i].name;
+          });
+          var chord = svg.selectAll(".chord").data(layout.chords).enter().append("path").attr("class", "chord").style("fill", function (d) {
+              return stations[d.source.index].color;
+          }).attr("d", path);
+          //Add an elaborate mouseover title for each chord.
+          chord.append("title").text(function (d) {
+              return stations[d.source.index].name + " → " + stations[d.target.index].name + ": " + formatPercent(d.source.value) + "\n" + stations[d.target.index].name + " → " + stations[d.source.index].name + ": " + formatPercent(d.target.value);
+          });
+
+          function mouseover(d, i) {
+              chord.classed("fade", function (p) {
+                  return p.source.index != i && p.target.index != i;
+              });
+          }
+          function mouseout(d, i){
+                path.selectAll(".chord").classed("fade", false);
+              }
+      }
+  </script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+     <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>

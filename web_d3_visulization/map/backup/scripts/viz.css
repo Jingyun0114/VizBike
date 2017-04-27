@@ -1,0 +1,465 @@
+@charset "UTF-8";
+/* Overall color scheme, etc */
+/* Constants that CSS could calculate, but we hard-code so Leaflet can work */
+/* No idea where the 10px comes from */
+/* Easier to measure things with this */
+/* line 23, ../sass/viz.scss */
+body, div, span, header, footer, h1, h2, h3, h4 {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: ‘Trebuchet MS’, Helvetica, sans-serif;
+}
+
+.leaflet-marker-icon,.leaflet-clickable,.leaflet-zoom-animated {
+  z-index:-1 !important;
+}
+
+/*path{
+  stroke: gray;
+  stroke-width: 2px;
+}*/
+
+.domain,.tick line {
+    stroke: gray;
+    stroke-width: 1px;
+}
+
+/* line 28, ../sass/viz.scss */
+.link {
+  color: #df6342;
+  font-size: 8pt;
+}
+
+/*
+ * Principle layout
+ */
+/* line 35, ../sass/viz.scss */
+#container {
+  margin: 5px 20px 20px 20px;
+  width: 1220px;
+}
+/* line 39, ../sass/viz.scss */
+#container #titlebar {
+  padding-left: 30px;
+  margin-bottom: -3px;
+  /* To lay exactly on the border of the body */
+  font-size: 20pt;
+}
+/* line 43, ../sass/viz.scss */
+#container #titlebar #sub-title {
+  font-size: 12pt;
+  font-style: italic;
+}
+/* line 47, ../sass/viz.scss */
+#container #titlebar .link#help-link {
+  float: right;
+  font-size: 8pt;
+}
+/* line 53, ../sass/viz.scss */
+#container #body {
+  border: 1px solid black;
+  border-radius: 20px;
+  background-color: #f4f4f4;
+  padding-bottom: 10px;
+}
+/* line 58, ../sass/viz.scss */
+#container #body #panels {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-box;
+  display: box;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -ms-box-orient: horizontal;
+  box-orient: horizontal;
+}
+
+/*
+ * Various components pulled out and referenced by id to reduce SCSS indentation
+ */
+/* line 69, ../sass/viz.scss */
+.introduction {
+  font-family: "Century Schoolbook";
+  color: #333333;
+  max-width: 80%;
+  padding-left: 37px;
+  padding-right: 30px;
+  margin-bottom: 20px;
+  padding-top: 20px;
+}
+/* line 77, ../sass/viz.scss */
+.introduction h1, .introduction h2 {
+  font-family: "Century Schoolbook";
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+/* line 83, ../sass/viz.scss */
+.introduction h1 {
+  font-size: 24px;
+}
+/* line 86, ../sass/viz.scss */
+.introduction li {
+  list-style: disc none outside;
+  margin-left: 30px;
+}
+/* line 93, ../sass/viz.scss */
+.introduction b {
+  font-weight: bold;
+}
+
+/* General bits for the chart panel with rounded corners, a header, and a footer */
+/* line 98, ../sass/viz.scss */
+.panel {
+  height: 460px;
+  margin: 0.5em;
+  border: 1px solid black;
+  border-radius: 20px;
+  overflow: hidden;
+  /* To round the corner of the map */
+}
+/* line 105, ../sass/viz.scss */
+.panel header {
+  display: block;
+  padding-top: 10px;
+  /*padding-left: 30px;*/
+  height: 30px;
+  background-color: white;
+  font-weight: bold;
+  font-size: 12pt;
+  border-bottom: 1px solid black;
+}
+
+#stationname{
+  color:blue;
+}
+
+#station-chart-panel header {
+  height: 50px;
+  border-bottom: none;
+}
+/* line 116, ../sass/viz.scss */
+.panel div.content {
+  display: block;
+  height: 400px;
+  background-color: white;
+}
+/* line 122, ../sass/viz.scss */
+.panel footer {
+  height: 40px;
+  display: block;
+  border-top: 1px solid black;
+  padding-top: 5px;
+  padding-left: 20px;
+  font-style: italic;
+  font-size: 10pt;
+  background-color: white;
+}
+/* line 132, ../sass/viz.scss */
+.panel #map-foot-stats {
+  float: right;
+  padding-right: 20px;
+}
+
+/* Map */
+/* line 140, ../sass/viz.scss */
+#map-panel #map {
+  width: 770px;
+  height: 400px;
+}
+/* line 144, ../sass/viz.scss */
+#map-panel #map-legend {
+  position: relative;
+  left: -1px;
+  top: -163px;
+  border: 1px solid black;
+}
+
+/* Hour controls */
+/* line 153, ../sass/viz.scss */
+#hour-controls {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-box;
+  display: box;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -ms-box-orient: horizontal;
+  box-orient: horizontal;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -ms-box-align: center;
+  box-align: center;
+  margin-top: 8px;
+  margin-bottom: 2px;
+  border: 1px solid gray;
+  border-radius: 25px;
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+  padding-left: 45px;
+  width: 100%;
+  font-size: 8pt;
+  font-weight: bold;
+  background-color: #fdfdfd;
+}
+/* line 168, ../sass/viz.scss */
+#hour-controls .hour {
+  margin: -3px;
+  padding: 8px;
+  border-radius: 5px;
+  min-width: 100px;
+  cursor: hand;
+  text-align: center;
+}
+/* line 177, ../sass/viz.scss */
+#hour-controls .hour:hover {
+  border: 1px solid black;
+  margin: -4px;
+  background-color: white;
+}
+/* line 182, ../sass/viz.scss */
+#hour-controls .hour.selected {
+  border: 2px solid black;
+  margin: -5px;
+  background-color: #fddf24;
+  fill-opacity: 0.5;
+}
+
+/* Station line chart panel */
+/* line 191, ../sass/viz.scss */
+#station-chart-panel {
+  width: 400px;
+  background-color: white;
+}
+/* line 194, ../sass/viz.scss */
+#station-chart-panel .title {
+  padding-top: 3px;
+  height: 10px;
+  padding-left: 30px;
+  font-size: 8pt;
+  color: black;
+}
+/* line 202, ../sass/viz.scss */
+#station-chart-panel #capacity {
+  color: gray;
+  /*float: right;*/
+  padding-top: 10px;
+  padding-right: 24px;
+  font-size: 8pt;
+}
+/* line 210, ../sass/viz.scss */
+#station-chart-panel #station-chart {
+  height: 410px;
+}
+/* line 213, ../sass/viz.scss */
+#station-chart-panel #station-chart .title {
+  font-family: sans-serif;
+  font-size: 12px;
+}
+/* line 218, ../sass/viz.scss */
+#station-chart-panel #station-chart .line {
+  fill: none;
+  stroke-width: 2px;
+}
+/* line 222, ../sass/viz.scss */
+#station-chart-panel #station-chart .line.arrivals {
+  stroke: #2c826b;
+}
+/* line 225, ../sass/viz.scss */
+#station-chart-panel #station-chart .line.departures {
+  stroke: #df6342;
+}
+/* line 228, ../sass/viz.scss */
+#station-chart-panel #station-chart .area {
+  opacity: 0.15;
+}
+/* line 231, ../sass/viz.scss */
+#station-chart-panel #station-chart .area.arrivals {
+  fill: #2c826b;
+}
+/* line 234, ../sass/viz.scss */
+#station-chart-panel #station-chart .area.departures {
+  fill: #df6342;
+}
+/* line 239, ../sass/viz.scss */
+#station-chart-panel #station-chart .axis path,
+#station-chart-panel #station-chart .axis line {
+  fill: none;
+  stroke: black;
+  shape-rendering: crispEdges;
+}
+/* line 246, ../sass/viz.scss */
+#station-chart-panel #station-chart .axis text {
+  font-family: sans-serif;
+  font-size: 11px;
+}
+/* line 250, ../sass/viz.scss */
+#station-chart-panel #station-chart .y.axis path {
+  /*display: none;*/
+}
+/* line 254, ../sass/viz.scss */
+#station-chart-panel footer {
+  border-top: 0px solid black;
+}
+
+/* Accumulation bar chart */
+/* line 261, ../sass/viz.scss */
+#accumulation-chart-container #accumulation-chart {
+  padding-top: 10px;
+  padding-bottom: 25px;
+  height: 450px;
+  border: solid 1px;
+  border-radius: 20px;
+  margin: 10px;
+  background-color: white;
+}
+/* line 267, ../sass/viz.scss */
+#accumulation-chart-container #accumulation-chart .bar-label {
+  font-size: 8pt;
+}
+/* line 268, ../sass/viz.scss */
+#accumulation-chart-container #accumulation-chart .bar-label.positive {
+  text-anchor: end;
+}
+/* line 269, ../sass/viz.scss */
+#accumulation-chart-container #accumulation-chart .bar-label.negative {
+  text-anchor: start;
+}
+/* line 271, ../sass/viz.scss */
+#accumulation-chart-container #accumulation-chart .bar {
+  stroke: black;
+  stroke-width: 1px;
+  border: 1px solid black;
+  fill-opacity: 0.8;
+}
+/* line 278, ../sass/viz.scss */
+#accumulation-chart-container #accumulation-chart .bar.positive {
+  fill: #2c826b;
+}
+/* line 279, ../sass/viz.scss */
+#accumulation-chart-container #accumulation-chart .bar.negative {
+  fill: #df6342;
+}
+/* line 280, ../sass/viz.scss */
+#accumulation-chart-container #accumulation-chart .bar.neutral {
+  fill: #a1988d;
+}
+/* line 281, ../sass/viz.scss */
+#accumulation-chart-container #accumulation-chart .bar.highlighted {
+  fill: white;
+  stroke-width: 2px;
+}
+/* line 284, ../sass/viz.scss */
+#accumulation-chart-container #accumulation-chart .axis path,
+#accumulation-chart-container #accumulation-chart .axis line {
+  fill: none;
+  stroke: black;
+  shape-rendering: crispEdges;
+}
+/* line 290, ../sass/viz.scss */
+#accumulation-chart-container #accumulation-chart .axis text {
+  font-family: sans-serif;
+  font-size: 11px;
+}
+/* line 294, ../sass/viz.scss */
+#accumulation-chart-container #accumulation-chart .bary.axis path {
+  /*display: none;*/
+  font-size: 12px;
+}
+/* line 299, ../sass/viz.scss */
+#accumulation-chart-container #accumulation-chart .activator {
+  stroke-width: 0px;
+  fill-opacity: 0.0;
+}
+/* line 304, ../sass/viz.scss */
+#accumulation-chart-container #accumulation-chart .activator.highlighted {
+  fill-opacity: 0.5;
+  /*fill: #ffffff;*/
+  fill: grey;
+}
+/* line 309, ../sass/viz.scss */
+#accumulation-chart-container #accumulation-chart .activator.selected {
+  fill: #fddf24;
+  fill-opacity: 0.5;
+}
+
+/* Nicer styles for the english-language accompanying this. */
+/* line 317, ../sass/viz.scss */
+#narrative {
+  font-family: "Century Schoolbook";
+  margin-left: 55px;
+  color: #333333;
+  width: 1100px;
+}
+/* line 322, ../sass/viz.scss */
+#narrative h2, #narrative h1 {
+  font-family: inherit;
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+/* line 327, ../sass/viz.scss */
+#narrative ul {
+  list-style: circle outside none;
+}
+/* line 328, ../sass/viz.scss */
+#narrative em {
+  font-style: italic;
+}
+/* line 329, ../sass/viz.scss */
+#narrative p {
+  margin-bottom: 1em;
+}
+/* line 332, ../sass/viz.scss */
+#narrative div {
+  font-family: inherit;
+}
+
+/* Hacks for the help */
+/* line 338, ../sass/viz.scss */
+#help {
+  clear: both;
+}
+/* line 341, ../sass/viz.scss */
+#help td em {
+  white-space: nowrap;
+}
+/* line 342, ../sass/viz.scss */
+#help td {
+  padding: 1em;
+  vertical-align: top;
+  color: #333333;
+}
+
+/* line 352, ../sass/viz.scss */
+#insights-holder h2 {
+  #       font-size: 14pt;
+}
+/* line 356, ../sass/viz.scss */
+#insights-holder p {
+  #	max-width: 600px;
+  #       font-size: 10pt;
+}
+/* line 361, ../sass/viz.scss */
+#insights-holder .pics {
+  # position: relative;
+  float: right;
+  margin-left: 0px;
+  padding-left: 20px;
+  margin-right: 0px;
+  margin-bottom: 10px;
+}
+/* line 369, ../sass/viz.scss */
+#insights-holder img {
+  #position: abosolute;
+  #top: 10px;
+}
+/* line 373, ../sass/viz.scss */
+#insights-holder .story {
+  clear: both;
+  #	margin-left: 10px;
+}
+/* line 378, ../sass/viz.scss */
+#insights-holder .story-text {
+  padding-top: 20px;
+  width-max: 50%;
+}

@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>VizBike@Pittsburgh</title>
+
+    <!-- Bootstrap -->
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='http://fonts.googleapis.com/css?family=Lato:100,400' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="css/style.css">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+<!-- *********style from here *********  -->
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.min.js"></script>
+   <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+  <style type="text/css">
+  /*body {
+    font: 11px sans-serif;
+  }*/
+  .custom {
+    font: 11px sans-serif;
+    margin-top: 10px;
+  }
+
+  .axis path,
+  .axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+  }
+
+  .bar:hover {
+    fill: #bcbcbc ;
+  }
+
+  .x.axis path {
+    display: none;
+  }
+
+  .d3-tip {
+    line-height: 1;
+    font-weight: bold;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #efefef;
+    border-radius: 2px;
+  }
+
+  /* Creates a small triangle extender for the tooltip */
+  .d3-tip:after {
+    box-sizing: border-box;
+    display: inline;
+    font-size: 10px;
+    width: 100%;
+    line-height: 1;
+    color: rgba(0, 0, 0, 0.8);
+    content: "\25BC";
+    position: absolute;
+    text-align: center;
+  }
+
+  /* Style northward tooltips differently */
+  .d3-tip.n:after {
+    margin: -1px 0 0 0;
+    top: 100%;
+    left: 0;
+  }
+
+.inner {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+}
+
+.rotate {
+    transform:  translateX(-50%) translateY(-50%) rotate(-90deg);
+}
+</style>
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+<style>
+  .navbar-default .navbar-nav>.active>a{
+    background-color:white;
+    color: #00abe0;
+    font-weight: bolder;
+  }
+  .navbar-default .navbar-nav>li>a{
+    color: white;
+    font-weight: bolder;
+  }
+  .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus{
+    background-color:white !important;
+    display: block;
+  }
+  .navbar-default .navbar-nav>li>a:hover {
+    background-color:white !important;
+    display: block;
+    color: #00abe0;
+    font-weight: bolder;
+  }
+  .first{
+    background-color:white;
+  }
+  .title>a{
+    font-size:10pt;
+    font-weight:bolder;
+    line-height:2;
+    color: black !important;
+  }
+</style>
+
+
+  </style>
+
+
+  </head>
+  <body>
+    <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12" style="background-color:#00abe0;border-bottom:solid 1px white;padding-bottom:5px;">
+        <center>
+       <img src="../image/vizbike-transparent.png" class="img-responsive" style="width:25%;">
+     </center>
+
+      </div>
+    </div>
+  </div>
+
+
+
+  <nav class="navbar navbar-default" role="navigation" style="background-color:#00abe0; border:none; border-radius:0;margin:0px;">
+    <div class="container-fluid" style="padding-left:0px;">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#" style="padding:0px;"></a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="padding-left:0px;">
+        <ul class="nav navbar-nav">
+          <li><a href="../home.html">Home</a></li>
+          <li><img src="../image/explore.png" style="width:100px;padding-top:5px;margin-left:10px;margin-right:10px"/></li>
+          <li><img src="../image/newbike.png" style="width:50px"/></li>
+          <li><span style="font-size:14pt;font-weight:bolder;line-height:2;margin-right:10px;color:black;">By Rider Behavior</span></li>
+          <li class="dropdown active">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Trip Counts and Duration<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="../tripDuration/ave_num_of_trips.html">Average Trip Counts</a></li>
+              <li><a href="#">Trip Duration</a></li>
+            </ul>
+          </li>
+          <li class=""><a href="../heatmap/heatmap.html">Busy Hours</a></li>
+          <li class=""><a href="../dashboard/weather.html">Weather Impact</a></li>
+          <li><img src="../image/index-marker.png" style="width:45px;height:45px;padding-top:5px;"/></li>
+          <li><span style="font-size:14pt;font-weight:bolder;line-height:2;margin-right:10px;color:black;">By Station</span></li>
+          <li><a href="../map/map.html">Bike Balance</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Hot Stations<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="../chorddiagram/chorddiagram.html">Station Path</a></li>
+              <li><a href="../bumpchart/bumpchart.html">Station Ranking</a></li>
+            </ul>
+          </li>
+
+
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+    <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+
+            <!-- ******code****  -->
+            <div style="margin-bottom: 20px">
+                <div class="custom">
+                <div>
+                    <center><h1 style="font-size:24pt; color:dark gray; font-weight:bold;font-family:helvetica !important;"> Trip Duration by User Type and Day of Week</h1></center>
+                    <!-- <span class = "userType">customer</span> -->
+                    <div style="text-align:center">
+                        <button id="cus" class="w3-btn w3-grey w3-border w3-round w3-medium" style = "padding:0px 5px" value = "customer" >Customer</button>
+                        <button id="sub" class="w3-btn w3-white w3-border w3-round w3-medium" style = "padding:0px 5px" value = "subscriber" >Subscriber</button>
+                    </div>
+                </div>
+                <!-- ******graph code**** -->
+                <div style="margin-left:15%">
+                  <div class="inner rotate" style="font-size:15px; left:15%; top:50%">Average Trips</div>
+
+                        <div id="vis">
+
+                        </div>
+
+                </div>
+                <div style="text-align:center;font-size:15px; margin-top:20px;">
+                        Trip Duration(Min)
+                </div>
+                </div>
+            </div>
+
+
+      </div>
+    </div>
+  </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="../js//jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/libs/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+
+var margin = {top: 45, right: 100, bottom: 20, left: 20},
+    width = 500 - margin.left - margin.right,
+    height = 90 - margin.top - margin.bottom;
+
+var color = d3.scale.linear()
+          .range(["#F7F7F7","#F5D0C2","#F6DED4","#F0977A","#CA0020"])//["#0571b0",#92c5de","#f7f7f7","#f4a582","#ca0020"])
+          .domain([0,10,20,30,100]);
+
+var x = d3.scale.ordinal()
+    .rangeRoundBands([0, width], .1);
+
+// Scales. Note the inverted domain fo y-scale: bigger is up!
+var y = d3.scale.linear()
+    .range([height, 0]);
+
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom");
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left")
+    //.tickFormat(formatPercent);
+
+var tip = d3.tip()
+  .attr('class', 'd3-tip')
+  .offset([-10, 0])
+  .html(function(d) {
+    return "<span style='color:#fff'>" + d.percent + "</span>";
+  })
+
+var usertype = 'customer';
+// csv loaded asynchronously
+d3.csv("duration_7c.csv", type, function(data) {
+
+  // Data is nested by country
+  var countries = d3.nest()
+      .key(function(d) { return d.country; })
+      .entries(data);
+
+  // Parse dates and numbers. We assume values are sorted by date.
+  // Also compute the maximum price per symbol, needed for the y-domain.
+  // symbols.forEach(function(s) {
+  //   s.values.forEach(function(d) { d.date = parse(d.date); d.price = +d.price; });
+  //   s.maxPrice = d3.max(s.values, function(d) { return d.price; });
+  // });
+
+  // Compute the minimum and maximum year and percent across symbols.
+  x.domain(data.map(function(d) { return d.year; }));
+  y.domain([0, d3.max(countries, function(s) { return s.values[0].percent; })]);
+
+  // Add an SVG element for each country, with the desired dimensions and margin.
+  var svg = d3.select("#vis").selectAll("svg")
+    .data(countries)
+    .enter()
+    .append("svg:svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+  svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis);
+
+  svg.append("g")
+      // Hide y axis
+      // .attr("class", "y axis")
+      // .call(yAxis)
+    .append("text")
+    .attr("x", width + 10)
+    .attr("y", height/3)
+    .attr("dy", ".71em")
+    .attr("text-anchor", "start")
+    .attr("font-size", "1.1em")
+    .text(function(d) { return d.key});
+
+  // Accessing nested data: https://groups.google.com/forum/#!topic/d3-js/kummm9mS4EA
+  // data(function(d) {return d.values;})
+  // this will dereference the values for nested data for each group
+  svg.selectAll(".bar")
+      .data(function(d) {return d.values;})
+      .enter()
+      .append("rect")
+      .attr("class", "bar")
+      .attr("x", function(d) { return x(d.year); })
+      .attr("width", x.rangeBand())
+      .attr("y", function(d) { return y(d.percent); })
+      .attr("height", function(d) { return height - y(d.percent); })
+      .attr("fill", function(d) {return color(d.percent)})
+      .on('mouseover', tip.show)
+      .on('mouseout', tip.hide)
+
+  svg.call(tip);
+
+});
+
+function type(d) {
+  d.percent = +d.percent;
+  return d;
+}
+
+// click to choose different user typer
+d3.selectAll(".w3-btn")
+  .on("click", function(){
+    usertype = this.getAttribute("value");
+    if(usertype == "customer"){
+        d3.selectAll("#cus")
+          .attr("class","w3-btn w3-grey w3-border w3-round w3-medium");
+        d3.selectAll("#sub")
+          .attr("class","w3-btn w3-white w3-border w3-round w3-medium");
+    }else{
+        d3.selectAll("#cus")
+          .attr("class","w3-btn w3-white w3-border w3-round w3-medium");
+        d3.selectAll("#sub")
+           .attr("class","w3-btn w3-grey w3-border w3-round w3-medium");
+    };
+
+    updateYear();
+    updateData();
+    });
+
+function updateYear(){//标题变了
+      var new_year = d3.select(".userType");
+      new_year.transition()
+              .duration(1000)
+              .text(usertype);
+}
+
+function updateData(){
+    if(usertype == "customer") {
+        d3.csv("duration_7c.csv", type, function(error, data) {
+            updateChart(data);
+        });
+    }
+    if(usertype == "subscriber") {
+        d3.csv("duration_7s.csv", type, function(error, data) {
+            updateChart(data);
+        });
+    }
+}
+
+// update the chart
+function updateChart(data) {
+  // Data is nested by country
+  var countries = d3.nest()
+      .key(function(d) { return d.country; })
+      .entries(data);
+
+  // Compute the minimum and maximum year and percent across symbols.
+  x.domain(data.map(function(d) { return d.year; }));
+  y.domain([0, d3.max(countries, function(s) { return s.values[0].percent; })]);
+
+  // Add an SVG element for each country, with the desired dimensions and margin.
+  var svg = d3.select("#vis").selectAll("svg")
+            .data(countries)
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+
+  svg.selectAll(".bar")
+      .data(function(d) {return d.values;})
+      .attr("x", function(d) { return x(d.year); })
+      .attr("width", x.rangeBand())
+      .attr("y", function(d) { return y(d.percent); })
+      .attr("height", function(d) { return height - y(d.percent); })
+      .attr("fill", function(d) {return color(d.percent)})
+      .on('mouseover', tip.show)
+      .on('mouseout', tip.hide)
+
+}
+
+
+
+
+</script>
+
+  </body>
+</html>

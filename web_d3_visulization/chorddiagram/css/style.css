@@ -1,0 +1,118 @@
+
+
+
+
+
+
+#circle circle {
+        fill: none;
+        pointer-events: all;
+    }
+
+    .group path {
+        fill-opacity: .5;
+    }
+
+    path.chord {
+        stroke: #eeeeee;
+        stroke-width: .25px;
+    }
+
+    #circle:hover path.fade {
+        display: none;
+    }
+
+    #circle:hover path.chord {
+        stroke: #a9a9a9;
+        stroke-width: .25px;
+    }
+    input[type=range] {
+  -webkit-appearance: none;
+  margin: 10px 0;
+  width: 90%;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 90%;
+  height: 20px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 2px 2px 1px #B3B3AD;
+  background: #F19483;
+  border-radius: 13px;
+  border: 1px solid #FFFFFF;
+}
+input[type=range]::-webkit-slider-thumb {
+  box-shadow: 1px 1px 4px #777877;
+  border: 1px solid #FFFFD9;
+  height: 31px;
+  width: 18px;
+  border-radius: 4px;
+  background: #F5EEB5;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -6.5px;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #F19483;
+}
+input[type=range]::-moz-range-track {
+  width: 90%;
+  height: 20px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 2px 2px 1px #B3B3AD;
+  background: #F19483;
+  border-radius: 13px;
+  border: 1px solid #FFFFFF;
+}
+input[type=range]::-moz-range-thumb {
+  box-shadow: 1px 1px 4px #777877;
+  border: 1px solid #FFFFD9;
+  height: 31px;
+  width: 18px;
+  border-radius: 4px;
+  background: #F5EEB5;
+  cursor: pointer;
+}
+input[type=range]::-ms-track {
+  width: 90%;
+  height: 20px;
+  cursor: pointer;
+  animate: 0.2s;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+  background: #F19483;
+  border: 1px solid #FFFFFF;
+  border-radius: 26px;
+  box-shadow: 2px 2px 1px #B3B3AD;
+}
+input[type=range]::-ms-fill-upper {
+  background: #F19483;
+  border: 1px solid #FFFFFF;
+  border-radius: 26px;
+  box-shadow: 2px 2px 1px #B3B3AD;
+}
+input[type=range]::-ms-thumb {
+  box-shadow: 1px 1px 4px #777877;
+  border: 1px solid #FFFFD9;
+  height: 31px;
+  width: 18px;
+  border-radius: 4px;
+  background: #F5EEB5;
+  cursor: pointer;
+}
+input[type=range]:focus::-ms-fill-lower {
+  background: #F19483;
+}
+input[type=range]:focus::-ms-fill-upper {
+  background: #F19483;
+}
+        span{
+            transition: color 2s;
+        }

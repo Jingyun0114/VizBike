@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>VizBike@Pittsburgh</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <style>
+      .navbar-default .navbar-nav>.active>a{
+        background-color:white;
+        color: #00abe0;
+        font-weight: bolder;
+      }
+      .navbar-default .navbar-nav>li>a{
+        color: white;
+        font-weight: bolder;
+      }
+      .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus{
+        background-color:white !important;
+        display: block;
+      }
+      .navbar-default .navbar-nav>li>a:hover {
+        background-color:white !important;
+        display: block;
+        color: #00abe0;
+        font-weight: bolder;
+      }
+      .first{
+        background-color:white;
+      }
+      .title>a{
+        font-size:10pt;
+        font-weight:bolder;
+        line-height:2;
+        color: black !important;
+      }
+      p::first-letter{
+        font-size: xx-large;
+      }
+      #boxhome{
+        -webkit-box-shadow: 2px 10px 24px -2px rgba(227,227,227,1);
+-moz-box-shadow: 2px 10px 24px -2px rgba(227,227,227,1);
+box-shadow: 2px 10px 24px -2px rgba(227,227,227,1);
+      }
+    </style>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12" style="background-color:#00abe0;border-bottom:solid 1px white;">
+        <center>
+       <img src="image/vizbike-transparent.png" class="img-responsive" width="25%">
+     </center>
+
+      </div>
+    </div>
+  </div>
+
+
+    <nav class="navbar navbar-default" role="navigation" style="background-color:#00abe0; border:none; border-radius:0;margin:0px;">
+      <div class="container-fluid" style="padding-left:0px;">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#" style="padding:0px;"></a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="padding-left:0px;">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><img src="image/explore.png" style="width:100px;padding-top:5px;margin-left:10px;margin-right:10px"/></li>
+            <li><img src="image/newbike.png" style="width:50px"/></li>
+            <li><span style="font-size:14pt;font-weight:bolder;line-height:2;margin-right:10px;color:black;">By Rider Behavior</span></li>
+            <li class="dropdown">
+              <a href="home.html" class="dropdown-toggle" data-toggle="dropdown">Trip Counts and Duration<span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="tripDuration/ave_num_of_trips.html">Average Trip Counts</a></li>
+                <li><a href="tripDuration/trip_duration.html">Trip Duration</a></li>
+              </ul>
+            </li>
+            <li class=""><a href="heatmap/heatmap.html">Busy Hours</a></li>
+            <li class=""><a href="dashboard/weather.html">Weather Impact</a></li>
+            <li><img src="image/index-marker.png" style="width:45px;height:45px;padding-top:5px;"/></li>
+            <li><span style="font-size:14pt;font-weight:bolder;line-height:2;margin-right:10px;color:black;">By Station</span></li>
+            <li><a href="map/map.html">Bike Balance</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Hot Stations<span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="chorddiagram/chorddiagram.html">Station Path</a></li>
+                <li><a href="bumpchart/bumpchart.html">Station Ranking</a></li>
+              </ul>
+            </li>
+
+
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+    <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12" style="padding:0px;margin:0px;background-image:url(image/new.jpg);opacity:0.6;padding-top:20px;padding-bottom:50px">
+        <!-- <img src="" width="100%" height="600px" style="opacity:0.6"></img> -->
+        <div class="col-md-offset-2 col-md-10">
+        <div id = "boxhome"style="background:rgba(0,0,0,0.6) no-repeat;width:80%; color:white; padding:50px;line-height:1.5;text-align:left;font-size:16pt;font-family:GothamBook,Arial;border-radius:20px;">
+          <center>
+          <p style="padding-bottom: 15px;">Bike sharing systems are widely used in many cities around the world, which are cost-efficient and environment-friendly for both users and cities.</p>
+          <div style="border: 0.5px whitesmoke dotted; width:300px;"></div>
+          <P>One appealing feature is that it allows people to borrow a bike from one station and return it at another station.</p >
+          <p>Although this advantage provides incredibly convenience for the riders, it poses the rebalancing problem for the system.</p >
+          <p style="padding-top:30px;">For assisting the rebalancing issue, our system - VizBike@Pittsburgh can be used to visualize the bike share data provided by Healthy Ride in Pittsburgh from 2015 Quarter 3 to 2016 Quarter 2.</p >
+          </center>
+        <div>
+
+      </div>
+
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>

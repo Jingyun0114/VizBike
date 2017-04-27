@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>VizBike@Pittsburgh</title>
+
+    <!-- Bootstrap -->
+
+    <meta name="description" content="A recreation in code of the classic but still exotic bump chart from the 1890 statistical atlas by Henry Gannett.">
+    <meta name="author" content="Jim Vallandingham">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='http://fonts.googleapis.com/css?family=Lato:100,400' rel='stylesheet' type='text/css'>
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+    html {
+  font-family: helvetica !important;
+  -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+}
+      .navbar-default .navbar-nav>.active>a{
+        background-color:white;
+        color: #00abe0;
+        font-weight: bolder;
+      }
+      .navbar-default .navbar-nav>li>a{
+        color: white;
+        font-weight: bolder;
+      }
+      .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus{
+        background-color:white !important;
+        display: block;
+      }
+      .navbar-default .navbar-nav>li>a:hover {
+        background-color:white !important;
+        display: block;
+        color: #00abe0;
+        font-weight: bolder;
+      }
+      .first{
+        background-color:white;
+      }
+    </style>
+
+
+    <script src="js/libs/modernizr-2.0.6.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12" style="background-color:#00abe0;border-bottom:solid 1px white;">
+        <center>
+       <img src="../image/vizbike-transparent.png" class="img-responsive" style="width:25%;">
+     </center>
+
+      </div>
+    </div>
+  </div>
+
+
+  <nav class="navbar navbar-default" role="navigation" style="background-color:#00abe0; border:none; border-radius:0;margin:0px;">
+    <div class="container-fluid" style="padding-left:0px;">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#" style="padding:0px;"></a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="padding-left:0px;">
+        <ul class="nav navbar-nav">
+          <li><a href="../home.html">Home</a></li>
+          <li><img src="../image/explore.png" style="width:100px;padding-top:5px;margin-left:10px;margin-right:10px"/></li>
+          <li><img src="../image/newbike.png" style="width:50px"/></li>
+          <li><span style="font-size:14pt;font-weight:bolder;line-height:2;margin-right:10px;color:black;">By Rider Behavior</span></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Trip Counts and Duration<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="../tripDuration/ave_num_of_trips.html">Average Trip Counts</a></li>
+              <li><a href="../tripDuration/trip_duration.html">Trip Duration</a></li>
+            </ul>
+          </li>
+          <li class=""><a href="../heatmap/heatmap.html">Busy Hours</a></li>
+          <li class=""><a href="../dashboard/weather.html">Weather Impact</a></li>
+          <li><img src="../image/index-marker.png" style="width:45px;height:45px;padding-top:5px;"/></li>
+          <li><span style="font-size:14pt;font-weight:bolder;line-height:2;margin-right:10px;color:black;">By Station</span></li>
+          <li><a href="../map/map.html">Bike Balance</a></li>
+          <li class="dropdown active">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Hot Stations<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="../chorddiagram/chorddiagram.html">Station Path</a></li>
+              <li><a href="#">Station Ranking</a></li>
+            </ul>
+          </li>
+
+
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+    <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-9" style="margin-left:3%;">
+        <div class="container">
+          <div id="main" role="main">
+            <center><h1 style="margin-top:20px;">Traffic Rank of All Stations From 2015 Quarter 3 to 2016 Quarter 2</h1></center>
+            <div id="vis"></div>
+          </div>
+        </div> <!--! end of #container -->
+
+      </div>
+      <div class="col-md-2" style="margin-top:11%; margin-left: 2%;">
+
+<table class="table table-bordered table-striped table-hover">
+  <tr>
+      <th>Capacity Rank</th>
+      <th>Station Capacity</th>
+  </tr>
+  <tr>
+      <td>1</td>
+      <td>35</td>
+
+  </tr>
+  <tr>
+      <td>3</td>
+      <td>21</td>
+  </tr>
+  <tr>
+      <td>7</td>
+      <td>20</td>
+
+  </tr>
+  <tr >
+      <td>9</td>
+      <td>19</td>
+
+  </tr>
+  <tr>
+      <td>30</td>
+      <td>18</td>
+
+  </tr>
+  <tr>
+      <td>33</td>
+      <td>17</td>
+
+  </tr>
+  <tr >
+      <td>35</td>
+      <td>15</td>
+  </tr>
+  <tr >
+      <td>48</td>
+      <td>13</td>
+
+  </tr>
+  <tr>
+      <td>49</td>
+      <td>12</td>
+
+  </tr>
+
+</table>
+</div>
+
+    </div>
+  </div>
+
+
+
+  <script src="../js/jquery.js"></script>
+
+
+  <script defer src="js/plugins.js"></script>
+  <script defer src="js/script.js"></script>
+  <script src="js/libs/d3.js"></script>
+  <script src="js/libs/queue.min.js"></script>
+  <script src="js/vis.js"></script>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/libs/bootstrap.min.js"></script>
+  </body>
+</html>

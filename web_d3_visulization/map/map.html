@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>VizBike@Pittsburgh</title>
+
+    <!-- Bootstrap -->
+
+    <link href="scripts/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+    <link href="scripts/print.css" media="print" rel="stylesheet" type="text/css">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <!--[if IE]>
+        <link href="stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
+        <![endif]-->
+
+    <!-- Our stylesheet, generated from sass/viz.scss -->
+    <link rel="stylesheet" href="scripts/viz.css">
+
+    <!-- Leaflet code and stylesheets -->
+    <link rel="stylesheet" href="scripts/leaflet.css">
+    <script src="scripts/leaflet.js"></script>
+
+    <!-- Misc vendor javascript libs -->
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="scripts/jquery.url.js"></script>
+    <script src="scripts/jquery.ba-throttle-debounce.js"></script>
+    <script src="scripts/underscore.js"></script>
+    <script src="scripts/knockout.js"></script>
+    <script src="scripts/d3.v3.min.js"></script>
+
+    <!-- Slider related -->
+    <link rel="stylesheet" href="scripts/jquery-ui.css">
+    <script src="scripts/jquery-ui.js"></script>
+
+    <!-- Our javascript -->
+    <script src="scripts/stations_zia.js"></script>
+    <script src="scripts/hourlyAverage.js"></script>
+    <script src="scripts/stationCap.js"></script>
+    <script src="scripts/viz.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+      .navbar-default .navbar-nav>.active>a{
+        background-color:white;
+        color: #00abe0;
+        font-weight: bolder;
+      }
+      .navbar-default .navbar-nav>li>a{
+        color: white;
+        font-weight: bolder;
+      }
+      .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus{
+        background-color:white !important;
+        display: block;
+      }
+      .navbar-default .navbar-nav>li>a:hover {
+        background-color:white !important;
+        display: block;
+        color: #00abe0;
+        font-weight: bolder;
+      }
+      .first{
+        background-color:white;
+      }
+      .title>a{
+        font-size:10pt;
+        font-weight:bolder;
+        line-height:2;
+        color: black !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12" style="background-color:#00abe0;border-bottom:solid 1px white;">
+        <center>
+       <img src="../image/vizbike-transparent.png" class="img-responsive" style="width:25%;">
+     </center>
+
+      </div>
+    </div>
+  </div>
+
+
+  <nav class="navbar navbar-default" role="navigation" style="background-color:#00abe0; border:none; border-radius:0;margin:0px;">
+    <div class="container-fluid" style="padding-left:0px;">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#" style="padding:0px;"></a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="padding-left:0px;">
+        <ul class="nav navbar-nav">
+          <li><a href="../home.html">Home</a></li>
+          <li><img src="../image/explore.png" style="width:100px;padding-top:5px;margin-left:10px;margin-right:10px"/></li>
+          <li><img src="../image/newbike.png" style="width:50px"/></li>
+          <li><span style="font-size:14pt;font-weight:bolder;line-height:2;margin-right:10px;color:black;">By Rider Behavior</span></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Trip Counts and Duration<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="../TripDuration/Ave_num_of_trips.html">Average Trip Counts</a></li>
+              <li><a href="../TripDuration/Trip_duration.html">Trip Duration</a></li>
+            </ul>
+          </li>
+          <li class=""><a href="../heatmap/heatmap.html">Busy Hours</a></li>
+          <li class=""><a href="../dashboard/weather.html">Weather Impact</a></li>
+          <li><img src="../image/index-marker.png" style="width:45px;height:45px;padding-top:5px;"/></li>
+          <li><span style="font-size:14pt;font-weight:bolder;line-height:2;margin-right:10px;color:black;">By Station</span></li>
+          <li class="active"><a href="map.html">Bike Balance</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Hot Stations<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="../chorddiagram/chorddiagram.html">Station Path</a></li>
+              <li><a href="../bumpchart/bumpchart.html">Station Ranking</a></li>
+            </ul>
+          </li>
+
+
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+    <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <center><h1 style="font-size:24pt; font-weight:bold; color:dark gray;">Bike Usage and Balance by Station by Day</h1></center>
+        <center><h3 style="font-size:10pt;color:gray;"><span style="font-weight: bold; color:skyblue;">Click on the slider</span> to choose a specific day of the week to explore. </h3></center>
+        <center><h3 style="font-size:10pt;color:gray;"><span style="font-weight: bold; color:skyblue;">Click on a circle of the map or bar of the bar chart</span> to highlight and select a station to explore. </h3></center>
+        <div id="container">
+
+          <div id="body">
+          <div id="hour-controls">
+            <div>Select a day to see it on the map and the bar chart below: &nbsp;&nbsp;</div>
+            <div class="hour" data-hour="0">Monday</div>
+            <div class="hour" data-hour="1">Tuesday</div>
+            <div class="hour" data-hour="2">Wednesday</div>
+            <div class="hour" data-hour="3">Thursday</div>
+            <div class="hour" data-hour="4">Friday</div>
+            <div class="hour" data-hour="5">Saturday</div>
+            <div class="hour" data-hour="6">Sunday</div>
+          </div>
+
+          <div id="panels">
+            <section class="panel" id="map-panel">
+              <center><header></header></center>
+              <div class="content">
+                <div id="map" class="leaflet-container leaflet-fade-anim" tabindex="0" style="position: relative;"><div class="leaflet-map-pane" style="transform: translate3d(0px, 0px, 0px);"><div class="leaflet-tile-pane">
+                  <div class="leaflet-layer">
+                  </div>
+                </div>
+                  <div class="leaflet-objects-pane"><div class="leaflet-shadow-pane"></div><div class="leaflet-overlay-pane"><svg class=" leaflet-zoom-animated" width="1540" height="780" viewBox="-385 -195 1540 780" style="transform: translate3d(-385px, -195px, 0px);"><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#df6342" stroke-opacity="1" stroke-width="2" fill="#df6342" fill-opacity="0.5" class="leaflet-clickable" d="M490,296A7,7,0,1,1,489.9,296 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#df6342" stroke-opacity="1" stroke-width="2" fill="#df6342" fill-opacity="0.5" class="leaflet-clickable" d="M422,337A8,8,0,1,1,421.9,337 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#2c826b" stroke-opacity="1" stroke-width="2" fill="#2c826b" fill-opacity="0.5" class="leaflet-clickable" d="M452,403A3,3,0,1,1,451.9,403 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#a1988d" stroke-opacity="1" stroke-width="2" fill="#a1988d" fill-opacity="0.5" class="leaflet-clickable" d="M532,264A7,7,0,1,1,531.9,264 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#df6342" stroke-opacity="1" stroke-width="2" fill="#df6342" fill-opacity="0.5" class="leaflet-clickable" d="M386,374A6,6,0,1,1,385.9,374 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#a1988d" stroke-opacity="1" stroke-width="2" fill="#a1988d" fill-opacity="0.5" class="leaflet-clickable" d="M507,352A8,8,0,1,1,506.9,352 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#df6342" stroke-opacity="1" stroke-width="2" fill="#df6342" fill-opacity="0.5" class="leaflet-clickable" d="M463,300A7,7,0,1,1,462.9,300 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#df6342" stroke-opacity="1" stroke-width="2" fill="#df6342" fill-opacity="0.5" class="leaflet-clickable" d="M477,348A6,6,0,1,1,476.9,348 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#df6342" stroke-opacity="1" stroke-width="2" fill="#df6342" fill-opacity="0.5" class="leaflet-clickable" d="M506,314A10,10,0,1,1,505.9,314 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#df6342" stroke-opacity="1" stroke-width="2" fill="#df6342" fill-opacity="0.5" class="leaflet-clickable" d="M606,274A7,7,0,1,1,605.9,274 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#df6342" stroke-opacity="1" stroke-width="2" fill="#df6342" fill-opacity="0.5" class="leaflet-clickable" d="M554,423A1,1,0,1,1,553.9,423 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#df6342" stroke-opacity="1" stroke-width="2" fill="#df6342" fill-opacity="0.5" class="leaflet-clickable" d="M606,381A4,4,0,1,1,605.9,381 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#a1988d" stroke-opacity="1" stroke-width="2" fill="#a1988d" fill-opacity="0.5" class="leaflet-clickable" d="M537,291A10,10,0,1,1,536.9,291 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#2c826b" stroke-opacity="1" stroke-width="2" fill="#2c826b" fill-opacity="0.5" class="leaflet-clickable" d="M640,465A2,2,0,1,1,639.9,465 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#2c826b" stroke-opacity="1" stroke-width="2" fill="#2c826b" fill-opacity="0.5" class="leaflet-clickable" d="M730,534A1,1,0,1,1,729.9,534 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#2c826b" stroke-opacity="1" stroke-width="2" fill="#2c826b" fill-opacity="0.5" class="leaflet-clickable" d="M678,199A8,8,0,1,1,677.9,199 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#2c826b" stroke-opacity="1" stroke-width="2" fill="#2c826b" fill-opacity="0.5" class="leaflet-clickable" d="M673,210A10,10,0,1,1,672.9,210 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#a1988d" stroke-opacity="1" stroke-width="2" fill="#a1988d" fill-opacity="0.5" class="leaflet-clickable" d="M695,234A10,10,0,1,1,694.9,234 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#2c826b" stroke-opacity="1" stroke-width="2" fill="#2c826b" fill-opacity="0.5" class="leaflet-clickable" d="M649,216A10,10,0,1,1,648.9,216 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#a1988d" stroke-opacity="1" stroke-width="2" fill="#a1988d" fill-opacity="0.5" class="leaflet-clickable" d="M681,250A4,4,0,1,1,680.9,250 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#2c826b" stroke-opacity="1" stroke-width="2" fill="#2c826b" fill-opacity="0.5" class="leaflet-clickable" d="M614,198A19,19,0,1,1,613.9,198 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#a1988d" stroke-opacity="1" stroke-width="2" fill="#a1988d" fill-opacity="0.5" class="leaflet-clickable" d="M637,146A11,11,0,1,1,636.9,146 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#2c826b" stroke-opacity="1" stroke-width="2" fill="#2c826b" fill-opacity="0.5" class="leaflet-clickable" d="M592,147A11,11,0,1,1,591.9,147 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#df6342" stroke-opacity="1" stroke-width="2" fill="#df6342" fill-opacity="0.5" class="leaflet-clickable" d="M559,134A11,11,0,1,1,558.9,134 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#000000" stroke-opacity="1" stroke-width="2" fill="#df6342" fill-opacity="1" class="leaflet-clickable" d="M583,93A13,13,0,1,1,582.9,93 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#2c826b" stroke-opacity="1" stroke-width="2" fill="#2c826b" fill-opacity="0.5" class="leaflet-clickable" d="M595,186A12,12,0,1,1,594.9,186 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#a1988d" stroke-opacity="1" stroke-width="2" fill="#a1988d" fill-opacity="0.5" class="leaflet-clickable" d="M642,114A11,11,0,1,1,641.9,114 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#2c826b" stroke-opacity="1" stroke-width="2" fill="#2c826b" fill-opacity="0.5" class="leaflet-clickable" d="M643,165A13,13,0,1,1,642.9,165 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#a1988d" stroke-opacity="1" stroke-width="2" fill="#a1988d" fill-opacity="0.5" class="leaflet-clickable" d="M607,143A8,8,0,1,1,606.9,143 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#df6342" stroke-opacity="1" stroke-width="2" fill="#df6342" fill-opacity="0.5" class="leaflet-clickable" d="M611,125A8,8,0,1,1,610.9,125 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#a1988d" stroke-opacity="1" stroke-width="2" fill="#a1988d" fill-opacity="0.5" class="leaflet-clickable" d="M552,215A10,10,0,1,1,551.9,215 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#2c826b" stroke-opacity="1" stroke-width="2" fill="#2c826b" fill-opacity="0.5" class="leaflet-clickable" d="M615,170A11,11,0,1,1,614.9,170 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#2c826b" stroke-opacity="1" stroke-width="2" fill="#2c826b" fill-opacity="0.5" class="leaflet-clickable" d="M569,185A10,10,0,1,1,568.9,185 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#2c826b" stroke-opacity="1" stroke-width="2" fill="#2c826b" fill-opacity="0.5" class="leaflet-clickable" d="M592,215A9,9,0,1,1,591.9,215 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#a1988d" stroke-opacity="1" stroke-width="2" fill="#a1988d" fill-opacity="0.5" class="leaflet-clickable" d="M523,138A11,11,0,1,1,522.9,138 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#a1988d" stroke-opacity="1" stroke-width="2" fill="#a1988d" fill-opacity="0.5" class="leaflet-clickable" d="M573,209A6,6,0,1,1,572.9,209 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#df6342" stroke-opacity="1" stroke-width="2" fill="#df6342" fill-opacity="0.5" class="leaflet-clickable" d="M437,236A8,8,0,1,1,436.9,236 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#df6342" stroke-opacity="1" stroke-width="2" fill="#df6342" fill-opacity="0.5" class="leaflet-clickable" d="M438,273A10,10,0,1,1,437.9,273 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#a1988d" stroke-opacity="1" stroke-width="2" fill="#a1988d" fill-opacity="0.5" class="leaflet-clickable" d="M413,292A7,7,0,1,1,412.9,292 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#df6342" stroke-opacity="1" stroke-width="2" fill="#df6342" fill-opacity="0.5" class="leaflet-clickable" d="M414,221A7,7,0,1,1,413.9,221 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#a1988d" stroke-opacity="1" stroke-width="2" fill="#a1988d" fill-opacity="0.5" class="leaflet-clickable" d="M425,249A7,7,0,1,1,424.9,249 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#a1988d" stroke-opacity="1" stroke-width="2" fill="#a1988d" fill-opacity="0.5" class="leaflet-clickable" d="M494,245A10,10,0,1,1,493.9,245 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#2c826b" stroke-opacity="1" stroke-width="2" fill="#2c826b" fill-opacity="0.5" class="leaflet-clickable" d="M457,255A11,11,0,1,1,456.9,255 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#a1988d" stroke-opacity="1" stroke-width="2" fill="#a1988d" fill-opacity="0.5" class="leaflet-clickable" d="M456,239A9,9,0,1,1,455.9,239 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#2c826b" stroke-opacity="1" stroke-width="2" fill="#2c826b" fill-opacity="0.5" class="leaflet-clickable" d="M488,224A13,13,0,1,1,487.9,224 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#2c826b" stroke-opacity="1" stroke-width="2" fill="#2c826b" fill-opacity="0.5" class="leaflet-clickable" d="M528,207A11,11,0,1,1,527.9,207 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#2c826b" stroke-opacity="1" stroke-width="2" fill="#2c826b" fill-opacity="0.5" class="leaflet-clickable" d="M509,218A9,9,0,1,1,508.9,218 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#a1988d" stroke-opacity="1" stroke-width="2" fill="#a1988d" fill-opacity="0.5" class="leaflet-clickable" d="M514,183A7,7,0,1,1,513.9,183 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#2c826b" stroke-opacity="1" stroke-width="2" fill="#2c826b" fill-opacity="0.5" class="leaflet-clickable" d="M321,226A8,8,0,1,1,320.9,226 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#2c826b" stroke-opacity="1" stroke-width="2" fill="#2c826b" fill-opacity="0.5" class="leaflet-clickable" d="M318,317A7,7,0,1,1,317.9,317 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#df6342" stroke-opacity="1" stroke-width="2" fill="#df6342" fill-opacity="0.5" class="leaflet-clickable" d="M322,247A7,7,0,1,1,321.9,247 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#2c826b" stroke-opacity="1" stroke-width="2" fill="#2c826b" fill-opacity="0.5" class="leaflet-clickable" d="M339,326A9,9,0,1,1,338.9,326 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#2c826b" stroke-opacity="1" stroke-width="2" fill="#2c826b" fill-opacity="0.5" class="leaflet-clickable" d="M351,306A7,7,0,1,1,350.9,306 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#a1988d" stroke-opacity="1" stroke-width="2" fill="#a1988d" fill-opacity="0.5" class="leaflet-clickable" d="M356,260A5,5,0,1,1,355.9,260 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#a1988d" stroke-opacity="1" stroke-width="2" fill="#a1988d" fill-opacity="0.5" class="leaflet-clickable" d="M374,232A10,10,0,1,1,373.9,232 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#a1988d" stroke-opacity="1" stroke-width="2" fill="#a1988d" fill-opacity="0.5" class="leaflet-clickable" d="M368,267A9,9,0,1,1,367.9,267 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#a1988d" stroke-opacity="1" stroke-width="2" fill="#a1988d" fill-opacity="0.5" class="leaflet-clickable" d="M325,354A6,6,0,1,1,324.9,354 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#df6342" stroke-opacity="1" stroke-width="2" fill="#df6342" fill-opacity="0.5" class="leaflet-clickable" d="M343,273A9,9,0,1,1,342.9,273 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#2c826b" stroke-opacity="1" stroke-width="2" fill="#2c826b" fill-opacity="0.5" class="leaflet-clickable" d="M298,305A6,6,0,1,1,297.9,305 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#df6342" stroke-opacity="1" stroke-width="2" fill="#df6342" fill-opacity="0.5" class="leaflet-clickable" d="M138,203A5,5,0,1,1,137.9,203 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#2c826b" stroke-opacity="1" stroke-width="2" fill="#2c826b" fill-opacity="0.5" class="leaflet-clickable" d="M261,217A7,7,0,1,1,260.9,217 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#2c826b" stroke-opacity="1" stroke-width="2" fill="#2c826b" fill-opacity="0.5" class="leaflet-clickable" d="M134,140A2,2,0,1,1,133.9,140 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#2c826b" stroke-opacity="1" stroke-width="2" fill="#2c826b" fill-opacity="0.5" class="leaflet-clickable" d="M85,173A4,4,0,1,1,84.9,173 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#df6342" stroke-opacity="1" stroke-width="2" fill="#df6342" fill-opacity="0.5" class="leaflet-clickable" d="M241,110A6,6,0,1,1,240.9,110 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#a1988d" stroke-opacity="1" stroke-width="2" fill="#a1988d" fill-opacity="0.5" class="leaflet-clickable" d="M182,123A6,6,0,1,1,181.9,123 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#2c826b" stroke-opacity="1" stroke-width="2" fill="#2c826b" fill-opacity="0.5" class="leaflet-clickable" d="M212,121A5,5,0,1,1,211.9,121 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#df6342" stroke-opacity="1" stroke-width="2" fill="#df6342" fill-opacity="0.5" class="leaflet-clickable" d="M217,209A8,8,0,1,1,216.9,209 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#df6342" stroke-opacity="1" stroke-width="2" fill="#df6342" fill-opacity="0.5" class="leaflet-clickable" d="M157,240A5,5,0,1,1,156.9,240 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#df6342" stroke-opacity="1" stroke-width="2" fill="#df6342" fill-opacity="0.5" class="leaflet-clickable" d="M220,294A7,7,0,1,1,219.9,294 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#a1988d" stroke-opacity="1" stroke-width="2" fill="#a1988d" fill-opacity="0.5" class="leaflet-clickable" d="M236,359A4,4,0,1,1,235.9,359 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#a1988d" stroke-opacity="1" stroke-width="2" fill="#a1988d" fill-opacity="0.5" class="leaflet-clickable" d="M261,364A6,6,0,1,1,260.9,364 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#a1988d" stroke-opacity="1" stroke-width="2" fill="#a1988d" fill-opacity="0.5" class="leaflet-clickable" d="M489,66A5,5,0,1,1,488.9,66 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#2c826b" stroke-opacity="1" stroke-width="2" fill="#2c826b" fill-opacity="0.5" class="leaflet-clickable" d="M404,100A6,6,0,1,1,403.9,100 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#2c826b" stroke-opacity="1" stroke-width="2" fill="#2c826b" fill-opacity="0.5" class="leaflet-clickable" d="M448,128A7,7,0,1,1,447.9,128 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#2c826b" stroke-opacity="1" stroke-width="2" fill="#2c826b" fill-opacity="0.5" class="leaflet-clickable" d="M413,128A8,8,0,1,1,412.9,128 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#2c826b" stroke-opacity="1" stroke-width="2" fill="#2c826b" fill-opacity="0.5" class="leaflet-clickable" d="M395,161A9,9,0,1,1,394.9,161 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#df6342" stroke-opacity="1" stroke-width="2" fill="#df6342" fill-opacity="0.5" class="leaflet-clickable" d="M388,50A3,3,0,1,1,387.9,50 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#df6342" stroke-opacity="1" stroke-width="2" fill="#df6342" fill-opacity="0.5" class="leaflet-clickable" d="M353,119A8,8,0,1,1,352.9,119 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#df6342" stroke-opacity="1" stroke-width="2" fill="#df6342" fill-opacity="0.5" class="leaflet-clickable" d="M347,41A4,4,0,1,1,346.9,41 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#a1988d" stroke-opacity="1" stroke-width="2" fill="#a1988d" fill-opacity="0.5" class="leaflet-clickable" d="M337,109A7,7,0,1,1,336.9,109 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#a1988d" stroke-opacity="1" stroke-width="2" fill="#a1988d" fill-opacity="0.5" class="leaflet-clickable" d="M323,99A6,6,0,1,1,322.9,99 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#a1988d" stroke-opacity="1" stroke-width="2" fill="#a1988d" fill-opacity="0.5" class="leaflet-clickable" d="M291,48A2,2,0,1,1,290.9,48 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#df6342" stroke-opacity="1" stroke-width="2" fill="#df6342" fill-opacity="0.5" class="leaflet-clickable" d="M273,100A3,3,0,1,1,272.9,100 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#a1988d" stroke-opacity="1" stroke-width="2" fill="#a1988d" fill-opacity="0.5" class="leaflet-clickable" d="M256,80A3,3,0,1,1,255.9,80 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#2c826b" stroke-opacity="1" stroke-width="2" fill="#2c826b" fill-opacity="0.5" class="leaflet-clickable" d="M228,54A5,5,0,1,1,227.9,54 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#2c826b" stroke-opacity="1" stroke-width="2" fill="#2c826b" fill-opacity="0.5" class="leaflet-clickable" d="M234,46A5,5,0,1,1,233.9,46 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#2c826b" stroke-opacity="1" stroke-width="2" fill="#2c826b" fill-opacity="0.5" class="leaflet-clickable" d="M247,43A8,8,0,1,1,246.9,43 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#2c826b" stroke-opacity="1" stroke-width="2" fill="#2c826b" fill-opacity="0.5" class="leaflet-clickable" d="M493,93A7,7,0,1,1,492.9,93 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#df6342" stroke-opacity="1" stroke-width="2" fill="#df6342" fill-opacity="0.5" class="leaflet-clickable" d="M239,2A4,4,0,1,1,238.9,2 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#df6342" stroke-opacity="1" stroke-width="2" fill="#df6342" fill-opacity="0.5" class="leaflet-clickable" d="M376,-56A3,3,0,1,1,375.9,-56 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#df6342" stroke-opacity="1" stroke-width="2" fill="#df6342" fill-opacity="0.5" class="leaflet-clickable" d="M383,-4A5,5,0,1,1,382.9,-4 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#df6342" stroke-opacity="1" stroke-width="2" fill="#df6342" fill-opacity="0.5" class="leaflet-clickable" d="M317,5A4,4,0,1,1,316.9,5 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#df6342" stroke-opacity="1" stroke-width="2" fill="#df6342" fill-opacity="0.5" class="leaflet-clickable" d="M311,-32A3,3,0,1,1,310.9,-32 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#a1988d" stroke-opacity="1" stroke-width="2" fill="#a1988d" fill-opacity="0.5" class="leaflet-clickable" d="M562,29A3,3,0,1,1,561.9,29 z"></path></g><g><path stroke-linejoin="round" stroke-linecap="round" fill-rule="evenodd" stroke="#a1988d" stroke-opacity="1" stroke-width="2" fill="#a1988d" fill-opacity="0.5" class="leaflet-clickable" d="M587,59A3,3,0,1,1,586.9,59 z"></path></g></svg></div><div class="leaflet-marker-pane"></div><div class="leaflet-popup-pane"></div></div></div><div class="leaflet-control-container"><div class="leaflet-top leaflet-left"><div class="leaflet-control-zoom leaflet-control">
+                  <a class="leaflet-control-zoom-in" href="http://zsobhani.github.io/hubway-team-viz/#" title="Zoom in">+</a>
+                  <a class="leaflet-control-zoom-out" href="http://zsobhani.github.io/hubway-team-viz/#" title="Zoom out">-</a></div>
+                </div><div class="leaflet-top leaflet-right"></div><div class="leaflet-bottom leaflet-left"></div><div class="leaflet-bottom leaflet-right"><div class="leaflet-control-attribution leaflet-control">Powered by <a href="http://leaflet.cloudmade.com/">Leaflet</a> — Map tiles by <a href="http://mapc.org/">MAPC</a>, Data by <a href="http://www.mass.gov/mgis/">MassGIS</a>.</div></div></div></div>
+                <img id="map-legend" src="scripts/legend.png" style="opacity:0.6;width:150px;">
+              </div>
+              <footer><span id="map-foot-station">Selected Station: </span><span id="map-foot-stats">North Station @ 9am --- Average traffic: 11 trips/hr of which 28 % are arriving</span></footer>
+            </section>
+
+            <section class="panel" id="station-chart-panel">
+              <center>
+              <header>
+                <span>Rides of</span>
+                <span id="stationname"></span>
+                <span> in a week</span>
+              </header>
+            </center>
+              <span id="capacity"></span>
+              <div class="content">
+                <!-- <div class="title" id="station-chart-title">Average Weekday Station Traffic by Hour</div> -->
+                <!-- <div class="title" ><center style="font-size:12pt;font-weight:bold;">Average Station Traffic by Day</center></div> -->
+                <div id="station-chart" style="opacity: 1.0">
+                  <!-- <svg width="400" height="410">
+
+                  </svg> -->
+                </div>
+              </div>
+              <footer><!-- put nothing here, the axis labels go here instead --></footer>
+            </section>
+
+          </div>
+
+          <section id="accumulation-chart-container">
+
+            <div id="accumulation-chart">
+              <center style="font-weight:bolder;">
+                <span>Net Accumulation of Bikes In and Out of Stations on</span>
+                <span id="day" style="color:blue"></span>
+                <span>in 2015 Quarter Three</span>
+              </center>
+            </div>
+          </section>
+
+        </div><!-- body -->
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  </body>
+</html>
